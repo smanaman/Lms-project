@@ -12,7 +12,8 @@ const StudentData = () => {
       <br />
       <input type='email' name=""  placeholder='enter student email' />
       <br />
-male
+      <h1>male :-</h1>
+
       <input type="radio" name="xender" value='male'/>
       female
       <input type="radio" name='xender' value='female' />
