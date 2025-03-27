@@ -1,0 +1,31 @@
+.btn-container {
+    display: flex;
+    gap: 20px;
+}
+.btn {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+}
+.btn i {
+    margin-right: 10px;
+}
+.btn-student {
+    background-color: #3498db;
+}
+.btn-student:hover {
+    background-color: #2980b9;
+}
+.btn-admin {
+    background-color: #e74c3c;
+}
+.btn-admin:hover {
+    background-color: #c0392b;
+}
