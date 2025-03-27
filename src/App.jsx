@@ -5,11 +5,13 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import Register from './Pages/Register'
 import Admin from './Pages/Admin'
 import Login from './Pages/Login'
+import StudentData from './Pages/StudentData'
 function App() {
   
 
   return (
     <>
+    <StudentData/>
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<Home/>}/>
