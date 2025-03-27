@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-    <StudentData/>
+    
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<Home/>}/>

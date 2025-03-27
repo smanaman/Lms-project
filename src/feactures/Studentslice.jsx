@@ -10,6 +10,10 @@ initialState,
 reducers:{
     addadmin:(state,action)=>{
 state.admin.push({...action.payload,id:nanoid()})
+    },
+    loout:(state,action)=>{
+localStorage.removeItem('AdminRegister')
+state.admin=[]
     }
 }
 
@@ -17,4 +21,4 @@ state.admin.push({...action.payload,id:nanoid()})
 
 
 export default Studentslice.reducer
-export const {addadmin} =Studentslice.actions
+export const {addadmin,loout} =Studentslice.actions
