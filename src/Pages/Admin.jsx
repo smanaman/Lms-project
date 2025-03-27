@@ -13,6 +13,8 @@ function Admin() {
   return (
     <div>
       <button onClick={()=>handleClick()}>Loguot</button>
+      <button onClick={()=>navigate('/studentdata')}>AddStudent data</button>
+
     </div>
   )
 }
