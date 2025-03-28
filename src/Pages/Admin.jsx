@@ -1,53 +1,42 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { loout } from '../feactures/Studentslice'
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loout } from "../feactures/Studentslice";
 
 function Admin() {
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
-  const handleClick=()=>{
-    navigate('/register')
-    dispatch(loout())
-       }
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-      
-      const localstoragedata=  JSON.parse(localStorage.getItem('StudentData'))
-      console.log(localstoragedata);
+  const handleClick = () => {
+    dispatch(loout());
+    navigate("/register");
+  };
 
-       const handleEdit=(val)=>{
-        console.log(val);
-          navigate('/Studentdata',{state:val})
+  const localstoragedata = JSON.parse(localStorage.getItem("StudentData")) || [];
 
-       }
-      
-      
+  const handleEdit = (val) => {
+    navigate("/StudentEdit", { state: val });
+  };
+
+  // const handleDelete=(val)=>{
+  //   dispatch(deletestudent(val))
+  // }
   return (
     <div>
-      <button onClick={()=>handleClick()}>Loguot</button>
-      <button onClick={()=>navigate('/studentdata')}>AddStudent data</button>
+      <button onClick={handleClick}>Logout</button>
+      <button onClick={() => navigate("/studentdata")}>Add Student Data</button>
 
-{
-      localstoragedata.map((val)=>{
-          return(
-            <div>
-               
-            <h6> {val.id}-
-              {val.name}-
-              {val.email}-
-              {val.gender}-
-              {val.fee}-
-              {val.course}-
-              <button onClick={()=>handleEdit(val)}>edit</button>
-              <button>delete</button>
-              </h6> 
-            </div>
-          
-          )
-      })
-}
+      {localstoragedata.map((val) => (
+        <div key={val.id}>
+          <h6>
+            {val.id} - {val.name} - {val.email} - {val.gender} - {val.fee} - {val.course} -
+            <button onClick={() => handleEdit(val)}>Edit</button>
+            <button onClick={()=>handleDelete(val.id)}>Delete</button>
+          </h6>
+        </div>
+      ))}
     </div>
-  )
+  );
 }
 
-export default Admin
+export default Admin;
