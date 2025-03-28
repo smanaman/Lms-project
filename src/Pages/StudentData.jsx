@@ -1,43 +1,116 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AddStudent } from "../feactures/Studentslice"; // Import the action from Redux slice
+import { useLocation } from "react-router-dom";
 
 const StudentData = () => {
+  const dispatch = useDispatch();
+  const locate=useLocation()
+//  const valuedata =locate.state;
+  
+  // State for form input
+  const [input, setInput] = useState({
+    name: "" ,
+    email: "",
+    gender: "",
+    fee: "",
+    course: "",
+  });
 
-  const [input,setInput]=useState({
-    name
-  })
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInput((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(AddStudent(input)); // Dispatch the action to Redux store
+    console.log("Submitted Data:", input);
+    setInput({ name: "", email: "", gender: "", fee: "", course: "" }); 
+  };
+
   return (
     <div>
-     <form>
-      <input type="text" name=""  placeholder='enter student name'/>
-      <br />
-      <input type='email' name=""  placeholder='enter student email' />
-      <br />
-      <h2>male :-</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter student name"
+          value={input.name}
+          onChange={handleChange}
+        />
+        <br />
 
-      <input type="radio" name="xender" value='male'/>
-      female
-      <input type="radio" name='xender' value='female' />
-      <br />
-     
-     pay 
-      <input type="radio" name="fee" value='payed' />
-     unpay 
-      <input type="radio" name="fee" value='unpay' />
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter student email"
+          value={input.email}
+          onChange={handleChange}
+        />
+        <br />
 
-<br />
-<select name="" >
-  <option value="development">development</option>
-  <option value="graphics">graphics</option>
-  <option value="ui-ux">ui-ux</option>
+        <h3>Gender:</h3>
+        <label>
+          <input
+            type="radio"
+            name="gender"
+            value="male"
+            checked={input.gender === "male"}
+            onChange={handleChange}
+          />
+          Male
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="gender"
+            value="female"
+            checked={input.gender === "female"}
+            onChange={handleChange}
+          />
+          Female
+        </label>
+        <br />
 
-</select>
-<br />
+        <h3>Payment Status:</h3>
+        <label>
+          <input
+            type="radio"
+            name="fee"
+            value="paid"
+            checked={input.fee === "paid"}
+            onChange={handleChange}
+          />
+          Paid
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="fee"
+            value="unpaid"
+            checked={input.fee === "unpaid"}
+            onChange={handleChange}
+          />
+          Unpaid
+        </label>
+        <br />
 
-<button>Add</button>
+        <h3>Course:</h3>
+        <select name="course" value={input.course} onChange={handleChange}>
+          <option value="">Select Course</option>
+          <option value="development">Development</option>
+          <option value="graphics">Graphics</option>
+          <option value="ui-ux">UI/UX</option>
+        </select>
+        <br />
 
-     </form>
+        <button type="submit" >add</button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default StudentData
+export default StudentData;
