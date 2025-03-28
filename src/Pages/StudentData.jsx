@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addadmin } from "../feactures/Studentslice"; // Import the action from Redux slice
+import { AddStudent } from "../feactures/Studentslice"; // Import the action from Redux slice
+import { useLocation } from "react-router-dom";
 
 const StudentData = () => {
   const dispatch = useDispatch();
-
+  const locate=useLocation()
+//  const valuedata =locate.state;
+  
   // State for form input
   const [input, setInput] = useState({
-    name: "",
+    name: "" ,
     email: "",
     gender: "",
     fee: "",
@@ -23,7 +26,7 @@ const StudentData = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addadmin(input)); // Dispatch the action to Redux store
+    dispatch(AddStudent(input)); // Dispatch the action to Redux store
     console.log("Submitted Data:", input);
     setInput({ name: "", email: "", gender: "", fee: "", course: "" }); 
   };
@@ -104,7 +107,7 @@ const StudentData = () => {
         </select>
         <br />
 
-        <button type="submit">Add</button>
+        <button type="submit" >add</button>
       </form>
     </div>
   );

@@ -16,10 +16,13 @@ const Studentslice = createSlice({
             state.admin = []
         },
         AddStudent: (state, action) => {
-            const student=JSON.parse(localStorage.getItem('setstudent')) ||[]
+            const student=JSON.parse(localStorage.getItem('StudentData')) ||[]
             const newstudent={...action.payload,id:nanoid()}
             student.push(newstudent)
             localStorage.setItem('StudentData',JSON.stringify(student))
+            },
+            editstudent:(state,action)=>{
+                const localstorageAlldata=JSON.parse('                                              ')
             }
     }
 
@@ -27,4 +30,4 @@ const Studentslice = createSlice({
 
 
 export default Studentslice.reducer
-export const { addadmin, loout } = Studentslice.actions
+export const { addadmin, loout ,AddStudent } = Studentslice.actions
