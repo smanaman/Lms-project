@@ -6,6 +6,7 @@ import Register from './Pages/Register'
 import Admin from './Pages/Admin'
 import Login from './Pages/Login'
 import StudentData from './Pages/StudentData'
+import StudentEdit from './Pages/StudentEdit'
 function App() {
   
 
@@ -19,6 +20,7 @@ function App() {
      < Route path='/login' element={<Login/>}/>
      < Route path='/admin' element={<Admin/>}/>
      < Route path='/studentdata' element={<StudentData/>}/>
+     < Route path='/studentEdit' element={<StudentEdit/>}/>
 
 
     </Routes>

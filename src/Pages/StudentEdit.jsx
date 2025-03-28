@@ -1,22 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { AddStudent } from "../feactures/Studentslice"; // Import the action from Redux slice
+import { editstudent } from "../feactures/Studentslice";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const StudentData = () => {
+const StudentEdit = () => {
   const dispatch = useDispatch();
-  const locate=useLocation()
-  const  nav=useNavigate()
-//  const valuedata =locate.state;
-  
-  // State for form input
+  const navigate = useNavigate();
+  const location = useLocation();
+  const valuedata = location.state || {}; // Get data from navigation
+
+  // ✅ Set initial state properly using useEffect
   const [input, setInput] = useState({
-    name: "" ,
+    id: "",
+    name: "",
     email: "",
     gender: "",
     fee: "",
     course: "",
   });
+
+  useEffect(() => {
+    if (valuedata) {
+      setInput(valuedata);
+    }
+  }, [valuedata]);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -24,18 +31,15 @@ const StudentData = () => {
     setInput((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(AddStudent(input)); // Dispatch the action to Redux store
-    console.log("Submitted Data:", input);
-    setInput({ name: "", email: "", gender: "", fee: "", course: "" }); 
-    nav('/admin')
+  // ✅ Correct function for submitting edit
+  const editdata = () => {
+    dispatch(editstudent(input));
+    navigate("/admin"); // Redirect to Admin page after updating
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
           name="name"
@@ -109,10 +113,10 @@ const StudentData = () => {
         </select>
         <br />
 
-        <button type="submit" >add</button>
+        <button type="button" onClick={() => editdata()}>Update</button>
       </form>
     </div>
   );
 };
 
-export default StudentData;
+export default StudentEdit;
