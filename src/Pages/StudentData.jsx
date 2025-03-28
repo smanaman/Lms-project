@@ -25,7 +25,7 @@ const StudentData = () => {
     e.preventDefault();
     dispatch(addadmin(input)); // Dispatch the action to Redux store
     console.log("Submitted Data:", input);
-    setInput({ name: "", email: "", gender: "", fee: "", course: "" }); // Reset form
+    setInput({ name: "", email: "", gender: "", fee: "", course: "" }); 
   };
 
   return (
