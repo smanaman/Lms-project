@@ -21,8 +21,7 @@ const Studentslice = createSlice({
             const addstudentdata = JSON.parse(localStorage.getItem("StudentData")) || [];
             const newstudent = { ...action.payload, id: nanoid() };
             addstudentdata.push(newstudent); // ✅ Push correctly to local array
-            localStorage.setItem("StudentData", JSON.stringify(addstudentdata)); // ✅ Save to localStorage
-        },
+            localStorage.setItem("StudentData", JSON.stringify(addstudentdata)); 
 
         editstudent: (state, action) => {
             console.log(action.payload);
