@@ -15,16 +15,7 @@ const Studentslice = createSlice({
             localStorage.removeItem('AdminRegister')
             state.admin = []
         },
-        AddStudent: (state, action) => {
-
-            const student=JSON.parse(localStorage.getItem('StudentData')) ||[]
-            const newstudent={...action.payload,id:nanoid()}
-            student.push(newstudent)
-            localStorage.setItem('StudentData',JSON.stringify(student))
-            },
-            editstudent:(state,action)=>{
-                const localstorageAlldata=JSON.parse('                                              ')
-            }
+       
 
        
     }
