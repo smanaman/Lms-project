@@ -14,7 +14,13 @@ const Studentslice = createSlice({
         loout: (state, action) => {
             localStorage.removeItem('AdminRegister')
             state.admin = []
-        }
+        },
+        AddStudent: (state, action) => {
+            const student=JSON.parse(localStorage.getItem('setstudent')) ||[]
+            const newstudent={...action.payload,id:nanoid()}
+            student.push(newstudent)
+            localStorage.setItem('StudentData',JSON.stringify(student))
+            }
     }
 
 })
