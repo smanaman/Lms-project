@@ -6,8 +6,8 @@
     text-decoration: none;
 }
 
-.container {
-    width: 100%;
+.containe {
+    width: 1440px;
     margin: 0px auto;
     padding-left: 16px;
     padding-right: 16px;
@@ -160,4 +160,28 @@ svg{
     background-position: center;
     background-size:cover;
     border-radius: 5px;
+}
+.addstd{
+    padding: 1px 10px;
+    margin-left: 10px;
+    border-radius: 50%;
+    background-color: crimson;
+    border: none;
+    color: white;
+}
+.log{
+    color: crimson;  
+    font-size: 30px;
+    /* padding-top:10px ; */
+   
+}
+.bt-log{
+    background-color: transparent;
+    border: none;
+    margin-top: 5px;
+  
+}
+.log-area{
+    display: flex;
+    align-items: center;
 }
