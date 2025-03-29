@@ -114,6 +114,10 @@ input[type="checkbox"] { display: none; }
     cursor: pointer;
 }
 
+.bg-d{
+    height: 100vh;
+    background-color: black;
+}
     .checkbox:checked + label::before, .checkbox:not(:checked) + label::before {
         position: absolute;
         display: block;

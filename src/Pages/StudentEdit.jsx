@@ -13,7 +13,9 @@ const StudentEdit = () => {
   const [input, setInput] = useState({
     id: "",
     name: "",
+    lastname:"",
     email: "",
+    password:"",
     gender: "",
     fee: "",
     course: "",

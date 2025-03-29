@@ -2,10 +2,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { loout } from "../feactures/Studentslice";
+// import { loout } from "../feactures/Studentslice";
 
 import { DeleteData, loout } from "../feactures/Studentslice";
-import Header from "../Component/Header";
+
 
 
 import './header.css'
@@ -167,7 +167,7 @@ function Admin() {
         </div>
       </header>
       {/* Header end */}
-      
+
       {localstoragedata.map((val) => (
         <div key={val.id}>
           <h6>
