@@ -18,7 +18,8 @@ const Login = () => {
       if (val.name == input.name && val.password == input.password) {
         nav("/admin");
       } else {
-        alert("register first");
+        console.log("register first");
+        
       }
       console.log(val);
     });
