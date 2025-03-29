@@ -25,7 +25,7 @@ const Studentslice = createSlice({
         AddStudent: (state, action) => {
             const addstudentdata = JSON.parse(localStorage.getItem("StudentData")) || [];
             const newstudent = { ...action.payload, id: nanoid() };
-            addstudentdata.push(newstudent); // ✅ Push correctly to local array
+            addstudentdata.push(newstudent); 
             localStorage.setItem("StudentData", JSON.stringify(addstudentdata)); 
         },
         editstudent: (state, action) => {
@@ -42,10 +42,21 @@ const Studentslice = createSlice({
                 comper.course = action.payload.course;
             }
 
-            localStorage.setItem("StudentData", JSON.stringify(students)); // ✅ Save updated data
+            localStorage.setItem("StudentData", JSON.stringify(students)); 
         },
+        DeleteData:(state,action)=>{
+            const studentData = JSON.parse(localStorage.getItem("StudentData")) || []  
+            console.log(action.payload);
+              
+            const StudentDeletDateta=studentData.filter((val)=>val.id!=action.payload);
+            
+            console.log(StudentDeletDateta);
+            localStorage.setItem('StudentData',JSON.stringify(StudentDeletDateta))
+
+        }
+
     },
 });
 
 export default Studentslice.reducer;
-export const { addadmin, loout, AddStudent, editstudent } = Studentslice.actions;
+export const { addadmin, loout, AddStudent, editstudent,DeleteData } = Studentslice.actions;

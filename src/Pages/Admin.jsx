@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loout } from "../feactures/Studentslice";
+import { DeleteData, loout } from "../feactures/Studentslice";
 import Header from "../Component/Header";
 
 function Admin() {
@@ -19,9 +19,9 @@ function Admin() {
     navigate("/StudentEdit", { state: val });
   };
 
-  // const handleDelete=(val)=>{
-  //   dispatch(deletestudent(val))
-  // }
+  const handleDelete=(val)=>{
+   dispatch(DeleteData(val))
+  }
   return (
     <div>
       <Header/>
