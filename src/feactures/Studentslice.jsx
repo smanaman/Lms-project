@@ -52,7 +52,6 @@ const Studentslice = createSlice({
             
             console.log(StudentDeletDateta);
             localStorage.setItem('StudentData',JSON.stringify(StudentDeletDateta))
-
         }
 
     },
