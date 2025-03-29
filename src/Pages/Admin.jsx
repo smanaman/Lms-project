@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loout } from "../feactures/Studentslice";
+import Header from "../Component/Header";
 
 function Admin() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function Admin() {
   // }
   return (
     <div>
+      <Header/>
       <button onClick={handleClick}>Logout</button>
       <button onClick={() => navigate("/studentdata")}>Add Student Data</button>
 
