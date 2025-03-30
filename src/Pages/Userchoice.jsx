@@ -6,7 +6,7 @@ const Userchoice = () => {
   return (
     <div>
       <div class="btn-container">
-        <button class="btn btn-student">
+        <button onClick={()=>nav('/studentLogin')} class="btn btn-student">
             <i class="fas fa-user-graduate"></i> Student
         </button>
         <button onClick={()=>nav('/login')} class="btn btn-admin">

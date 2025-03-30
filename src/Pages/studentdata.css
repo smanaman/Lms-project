@@ -94,6 +94,7 @@ body {
   input {
     &[type="text"],
     &[type="email"],
+    &[type="url"],
     &[type="password"] {
       width: 100%;
       padding: 8px 10px 9px 35px;
