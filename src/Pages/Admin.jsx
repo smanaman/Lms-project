@@ -1,11 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { useEffect } from "react";
 import { loout } from "../feactures/Studentslice";
 
 import { DeleteData} from "../feactures/Studentslice";
 // import Header from "../Component/Header";
+=======
+
+// import { loout } from "../feactures/Studentslice";
+
+import { DeleteData, loout } from "../feactures/Studentslice";
+
+>>>>>>> 85ade6fef21359b10c30913448a00e4720bdef49
 
 
 import './header.css'
@@ -175,8 +183,13 @@ console.log(students);
         </div>
       </header>
       {/* Header end */}
+<<<<<<< HEAD
       
       {students.map((val) => (
+=======
+
+      {localstoragedata.map((val) => (
+>>>>>>> 85ade6fef21359b10c30913448a00e4720bdef49
         <div key={val.id}>
           <h6>
             {val.id} - {val.name} -{
