@@ -12,6 +12,7 @@ const StudentData = () => {
   // State for form input
   const [input, setInput] = useState({
     name: "" ,
+    img:"",
     email: "",
     gender: "",
     fee: "",
@@ -29,7 +30,7 @@ const StudentData = () => {
     e.preventDefault();
     dispatch(AddStudent(input)); // Dispatch the action to Redux store
     console.log("Submitted Data:", input);
-    setInput({ name: "", email: "", gender: "", fee: "", course: "" }); 
+    setInput({ name: "",img:"", email: "", gender: "", fee: "", course: "" }); 
     nav('/admin')
   };
 
@@ -44,7 +45,14 @@ const StudentData = () => {
           onChange={handleChange}
         />
         <br />
-
+        <input
+          type="url"
+          name="img"
+          placeholder="Enter student photo"
+          value={input.img}
+          onChange={handleChange}
+        />
+        <br />
         <input
           type="email"
           name="email"

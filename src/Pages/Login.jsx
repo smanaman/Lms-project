@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./login.css";
@@ -6,22 +6,34 @@ import Register from "./Register";
 
 
 const Login = () => {
+
+ 
   const nav = useNavigate();
+//   useEffect(()=>{
+//     let Getadmindata=JSON.parse(localStorage.getItem('usersdata'))
+
+//     if(!Getadmindata){
+// nav('/login')
+//     }
+//   },[])
   const [input, setinput] = useState({
     name: "",
     password: "",
   });
+  const [Logindata,setLogindata]=useState(JSON.parse(localStorage.getItem('usersdata'))||[])
   const getdata = JSON.parse(localStorage.getItem("AdminRegister"));
   const handlesubmit = (e) => {
     e.preventDefault();
     getdata.map((val) => {
       if (val.name == input.name && val.password == input.password) {
+       
+        localStorage.setItem('login',JSON.stringify(input))
         nav("/admin");
       } else {
-        console.log("register first");
+       alert('enter right pass')
         
       }
-      console.log(val);
+      
     });
   };
   const handlechange = (e) => {
@@ -87,7 +99,7 @@ const Login = () => {
                       <div className="card-3d-wrapper">
                         <div className="card-front">
                           <div className="center-wrap">
-                            <form onClick={handlesubmit}>
+                            <form onSubmit={handlesubmit}>
                               <h4 className="heading">Log In</h4>
                               <div className="form-group">
                                 <input

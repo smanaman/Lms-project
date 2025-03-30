@@ -13,6 +13,7 @@ const StudentEdit = () => {
   const [input, setInput] = useState({
     id: "",
     name: "",
+    img:"",
     email: "",
     gender: "",
     fee: "",
@@ -45,6 +46,14 @@ const StudentEdit = () => {
           name="name"
           placeholder="Enter student name"
           value={input.name}
+          onChange={handleChange}
+        />
+        <br />
+        <input
+          type="url"
+          name="img"
+          placeholder="Enter student photo"
+          value={input.img}
           onChange={handleChange}
         />
         <br />

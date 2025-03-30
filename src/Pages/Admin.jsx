@@ -1,11 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { useEffect } from "react";
 import { loout } from "../feactures/Studentslice";
 
-import { DeleteData, loout } from "../feactures/Studentslice";
-import Header from "../Component/Header";
+import { DeleteData} from "../feactures/Studentslice";
+// import Header from "../Component/Header";
 
 
 import './header.css'
@@ -14,11 +14,19 @@ import "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 function Admin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useEffect(()=>{
+    let Getadmindata=JSON.parse(localStorage.getItem('login'))
 
+    if(!Getadmindata){
+      navigate('/login')
+    }
+  },[])
   const handleClick = () => {
     dispatch(loout());
     navigate("/");
   };
+const {students} =useSelector(state =>state.admin)
+console.log(students);
 
   const localstoragedata = JSON.parse(localStorage.getItem("StudentData")) || [];
 
@@ -168,10 +176,12 @@ function Admin() {
       </header>
       {/* Header end */}
       
-      {localstoragedata.map((val) => (
+      {students.map((val) => (
         <div key={val.id}>
           <h6>
-            {val.id} - {val.name} - {val.email} - {val.gender} - {val.fee} - {val.course} -
+            {val.id} - {val.name} -{
+              <img src={val.img} alt="" srcset="" width={50} height={100}/>
+            } - {val.email} - {val.gender} - {val.fee} - {val.course} -
             <button onClick={() => handleEdit(val)}>Edit</button>
             <button onClick={()=>handleDelete(val.id)}>Delete</button>
           </h6>
