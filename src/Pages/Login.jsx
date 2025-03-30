@@ -44,7 +44,7 @@ const Login = () => {
     // </div>
     <>
     
-      <div> 
+      <div className="bg-d"> 
         <section>
           <div className="container">
             <div className="row full-screen align-items-center">
