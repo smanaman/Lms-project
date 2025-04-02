@@ -9,13 +9,7 @@ const Login = () => {
 
  
   const nav = useNavigate();
-//   useEffect(()=>{
-//     let Getadmindata=JSON.parse(localStorage.getItem('usersdata'))
-
-//     if(!Getadmindata){
-// nav('/login')
-//     }
-//   },[])
+ 
   const [input, setinput] = useState({
     name: "",
     password: "",
@@ -23,6 +17,11 @@ const Login = () => {
   const [Logindata,setLogindata]=useState(JSON.parse(localStorage.getItem('usersdata'))||[])
   const getdata = JSON.parse(localStorage.getItem("AdminRegister"));
   const handlesubmit = (e) => {
+    let logindata=JSON.parse(localStorage.getItem('AdminRegister'))
+
+    if(!logindata){
+alert('resiter first')
+    }
     e.preventDefault();
     getdata.map((val) => {
       if (val.name == input.name && val.password == input.password) {

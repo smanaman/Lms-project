@@ -32,7 +32,7 @@ return(
         />
         </div>
         
-        <h2>Mamta Fulwary</h2>
+        <h2>{val.name} {val.lastname}</h2>
         {/* <p>Student ID: 123456</p>
         <p>Class: 10</p>
         <p>Section: A</p> */}

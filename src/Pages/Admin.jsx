@@ -15,6 +15,7 @@ function Admin() {
     let Getadmindata = JSON.parse(localStorage.getItem("login"));
     if (!Getadmindata) {
       navigate("/login");
+      
     }
   }, [navigate]);
 
