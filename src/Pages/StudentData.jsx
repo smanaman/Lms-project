@@ -131,6 +131,7 @@ const StudentData = () => {
                       placeholder="Enter student password"
                       value={input.password}
                       onChange={handleChange}
+                      required
                     />
                   </div>
 
@@ -139,20 +140,20 @@ const StudentData = () => {
                       type="radio"
                       name="gender"
                       value="male"
-                      id="rd1"
+                      id="male"
                       checked={input.gender === "male"}
                       onChange={handleChange}
                     />
-                    <label htmlFor="rd1">Male</label>
+                    <label htmlFor="male">Male</label>
                     <input
                       type="radio"
                       name="gender"
                       value="female"
-                      id="rd2"
+                      id="female"
                       checked={input.gender === "female"}
                       onChange={handleChange}
                     />
-                    <label htmlFor="rd2">Female</label>
+                    <label htmlFor="female">Female</label>
                   </div>
 
                   <div className="input_field select_option">
@@ -160,6 +161,7 @@ const StudentData = () => {
                       name="course"
                       value={input.course}
                       onChange={handleChange}
+                      required
                     >
                       <option value="">Select a Course</option>
                       <option value="ui/ux design">UI / UX Design</option>
@@ -168,9 +170,30 @@ const StudentData = () => {
                     <div className="select_arrow" />
                   </div>
 
+                  <div className="input_field radio_option">
+                    <input
+                      type="radio"
+                      name="fee"
+                      value="paid"
+                      id="paid"
+                      checked={input.fee === "paid"}
+                      onChange={handleChange}
+                    />
+                    <label htmlFor="paid">Paid</label>
+                    <input
+                      type="radio"
+                      name="fee"
+                      value="unpaid"
+                      id="unpaid"
+                      checked={input.fee === "unpaid"}
+                      onChange={handleChange}
+                    />
+                    <label htmlFor="unpaid">Unpaid</label>
+                  </div>
+
                   <div className="input_field checkbox_option">
-                    <input type="checkbox" id="cb1" />
-                    <label htmlFor="cb1">
+                    <input type="checkbox" id="terms" required />
+                    <label htmlFor="terms">
                       I agree with terms and conditions
                     </label>
                   </div>
@@ -183,8 +206,8 @@ const StudentData = () => {
         </div>
         <p className="credit">
           Developed by{" "}
-          <a href="http://www.designtheway.com" target="_blank">
-            Design the way
+          <a href="http://www.designtheway.com" target="_blank" rel="noopener noreferrer">
+            AVP Developer
           </a>
         </p>
       </div>

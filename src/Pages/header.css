@@ -4,6 +4,7 @@
     padding: 0px;
     list-style: none;
     text-decoration: none;
+   
 }
 
 .containe {
@@ -170,8 +171,11 @@ svg{
     color: white;
 }
 .log{
-    color: crimson;  
-    font-size: 30px;
+    color: white;  
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /* padding-top:10px ; */
    
 }

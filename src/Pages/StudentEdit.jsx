@@ -41,7 +41,7 @@ const StudentEdit = () => {
   };
 
   return (
-    <div className="bg-b">
+    <div className="bg-b flex-column">
       <div className="form_wrapper">
         <div className="form_container">
           <div className="title_container">
@@ -153,6 +153,27 @@ const StudentEdit = () => {
                 </select>
                 <div className="select_arrow" />
               </div>
+              <div className="input_field radio_option">
+  <input
+    type="radio"
+    name="fee"
+    value="paid"
+    id="fee_paid"
+    checked={input.fee === "paid"}
+    onChange={handleChange}
+  />
+  <label htmlFor="fee_paid">Paid</label>
+
+  <input
+    type="radio"
+    name="fee"
+    value="unpaid"
+    id="fee_unpaid"
+    checked={input.fee === "unpaid"}
+    onChange={handleChange}
+  />
+  <label htmlFor="fee_unpaid">Unpaid</label>
+</div>
 
               <div className="input_field checkbox_option">
                 <input type="checkbox" id="cb1" />
@@ -167,7 +188,7 @@ const StudentEdit = () => {
       <p className="credit">
         Developed by{" "}
         <a href="http://www.designtheway.com" target="_blank">
-          Design the way
+        AVP Developer
         </a>
       </p>
     </div>
