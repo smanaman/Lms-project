@@ -11,6 +11,7 @@ function Admin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
+  const [isFiltered, setIsFiltered] = useState(false); // Track if filtering is active
 
   const [FilteringData, serFilteringData] = useState([])
   useEffect(() => {
@@ -39,20 +40,25 @@ function Admin() {
     dispatch(DeleteData(id));
   };
   const handleunpaid = (del) => {
-    const filterdatat = students.filter((val) => val.fee == del)
-    console.log(filterdatat);
-    serFilteringData(filterdatat)
+    const filterdatat = students.filter(val => val.fee === del);
+    serFilteringData(filterdatat);
+    setIsFiltered(true); // Mark filtering active
+};
 
-  }
- 
-const SarchingData=()=>{
-  const FilterSarching = students.filter(item =>
-    item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.email.toLowerCase().includes(searchQuery.toLowerCase())
-);
+const SarchingData = () => {
+    let dataToFilter = isFiltered ? FilteringData : students; // Search within filtered data if active
+    const FilterSarching = dataToFilter.filter(item => 
+        item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        item.email.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    serFilteringData(FilterSarching);
+};
 
-serFilteringData(FilterSarching)
-}
+const resetFilter = () => {
+    serFilteringData([]);
+    setIsFiltered(false);
+    setSearchQuery('');
+};
 
 
   return (
@@ -115,19 +121,19 @@ serFilteringData(FilterSarching)
         </h1>
         <div class="overflow-x-auto">
           <div className="filtring">
-            <div className="filtring-left">
-            <input
-                type="text"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-            />
-<button onClick={()=>SarchingData()}>click</button>
-            </div>
-            <div className="filtring-right">
-            <button className="bg-danger p-2  rounded " onClick={() => handleunpaid('unpaid')}>unpaid</button>
-
-            </div>
+          <div className="filtring-left">
+    <input 
+        type="text" 
+        placeholder="Search..." 
+        value={searchQuery} 
+        onChange={(e) => setSearchQuery(e.target.value)}
+    />
+    <button onClick={SarchingData}>Search</button>
+    <button onClick={resetFilter} className="ms-2 bg-secondary p-2 rounded">Reset</button>
+</div>
+<div className="filtring-right">
+    <button className="bg-danger p-2 rounded" onClick={() => handleunpaid('unpaid')}>Unpaid</button>
+</div>
           </div>
           <table class="min-w-full bg-gray-800 rounded-lg">
 
