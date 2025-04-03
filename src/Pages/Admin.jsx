@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loout, DeleteData } from "../feactures/Studentslice";
@@ -10,12 +10,14 @@ import "bootstrap/dist/js/bootstrap.min.js";
 function Admin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
 
+  const [FilteringData, serFilteringData] = useState([])
   useEffect(() => {
     let Getadmindata = JSON.parse(localStorage.getItem("login"));
     if (!Getadmindata) {
       navigate("/login");
-      
+
     }
   }, [navigate]);
 
@@ -36,6 +38,22 @@ function Admin() {
   const handleDelete = (id) => {
     dispatch(DeleteData(id));
   };
+  const handleunpaid = (del) => {
+    const filterdatat = students.filter((val) => val.fee == del)
+    console.log(filterdatat);
+    serFilteringData(filterdatat)
+
+  }
+ 
+const SarchingData=()=>{
+  const FilterSarching = students.filter(item =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.email.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+serFilteringData(FilterSarching)
+}
+
 
   return (
     <div>
@@ -89,21 +107,6 @@ function Admin() {
       {/* Header end */}
 
       {/* Student List */}
-      {/* {localstoragedata.map((val) => (
-        <div key={val.id}>
-          <h6>
-            {val.id} - {val.name} -{" "}
-            <img src={val.img} alt="student" width={50} height={100} /> - {val.email} -{" "}
-            {val.gender} - {val.fee} - {val.course} -{" "}
-            <button onClick={() => handleEdit(val)}>Edit</button>{" "}
-            <button onClick={() => handleDelete(val.id)}>Delete</button>
-          </h6>
-        </div>
-      ))} */}
-
-
-
-
 
 
       <div class="container mx-auto p-4 ">
@@ -111,7 +114,23 @@ function Admin() {
           Unpaid Student Intuition
         </h1>
         <div class="overflow-x-auto">
+          <div className="filtring">
+            <div className="filtring-left">
+            <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+            />
+<button onClick={()=>SarchingData()}>click</button>
+            </div>
+            <div className="filtring-right">
+            <button className="bg-danger p-2  rounded " onClick={() => handleunpaid('unpaid')}>unpaid</button>
+
+            </div>
+          </div>
           <table class="min-w-full bg-gray-800 rounded-lg">
+
             <thead>
               <tr class="w-full bg-gray-700 text-left text-gray-400">
                 <th class="py-3 px-4 text-center">
@@ -147,37 +166,32 @@ function Admin() {
               </tr>
             </thead>
             <tbody class="text-gray-300">
-              
-              {students && students.length > 0 ? (
-                students.map((val) => (
-                  <tr key={val.id} className="border-b border-gray-700">
-                    <td className="pt-2 m-2 px-4 flex items-center">
-                      <img alt="Profile picture" className="img-round-sudent" src={val.img} />
-                      {val.name} {val.last}
-                    </td>
-                    <td className="text-blue-400 text-center">{val.email}</td>
-                    <td className="text-center">{val.gender}</td>
-                    <td className="py-3 px-4 text-center">{val.fee}</td>
-                    <td className="py-3 px-4 text-center">{val.course}</td>
-                    <td className="py-3 px-4 text-center">
-                      <button className="p-2 bg-danger rounded-2" onClick={() => handleEdit(val)}>Edit</button>
-                      <button className="p-2 bg-success ms-3 rounded-2" onClick={() => handleDelete(val.id)}>Delete</button>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="6" className="text-center text-gray-400">No data available</td>
-                </tr>
-              )}
-              
 
-              
+              {(FilteringData.length > 0 ? FilteringData : students).map((val) => (
+                <tr key={val.id} className="border-b border-gray-700">
+                  <td className="pt-2 m-2 px-4 flex items-center">
+                    <img alt="Profile picture" className="img-round-sudent" src={val.img} />
+                    {val.name} {val.last}
+                  </td>
+                  <td className="text-blue-400 text-center">{val.email}</td>
+                  <td className="text-center">{val.gender}</td>
+                  <td className="py-3 px-4 text-center">{val.fee}</td>
+                  <td className="py-3 px-4 text-center">{val.course}</td>
+                  <td className="py-3 px-4 text-center">
+                    <button className="p-2 bg-danger rounded-2" onClick={() => handleEdit(val)}>Edit</button>
+                    <button className="p-2 bg-success ms-3 rounded-2" onClick={() => handleDelete(val.id)}>Delete</button>
+                  </td>
+                </tr>
+              ))
+              }
+
+
+
 
             </tbody>
           </table>
         </div>
-     
+
       </div>
 
 
