@@ -42,6 +42,8 @@ const StudentEdit = () => {
 
   return (
     <div className="bg-b flex-column">
+                  <div className="roundbackform" onClick={()=>navigate('/admin')}><i class="fa-solid fa-arrow-left"></i></div>
+
       <div className="form_wrapper">
         <div className="form_container">
           <div className="title_container">

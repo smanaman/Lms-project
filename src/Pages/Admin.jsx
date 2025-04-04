@@ -20,7 +20,9 @@ function Admin() {
       navigate("/login");
 
     }
+   
   }, [navigate]);
+  
 
   const handleClick = () => {
     dispatch(loout());

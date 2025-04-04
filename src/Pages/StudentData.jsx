@@ -49,8 +49,12 @@ const StudentData = () => {
   };
 
   return (
+    
     <div className="bg-b">
+            <div className="roundbackform" onClick={()=>nav('/admin')}><i class="fa-solid fa-arrow-left"></i></div>
+
       <div>
+
         <div className="form_wrapper">
           <div className="form_container">
             <div className="title_container">

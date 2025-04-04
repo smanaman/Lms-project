@@ -1,9 +1,10 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import "./Showdata.css"
 function ShowStudentData() {
     const loc=useLocation()
     console.log(loc.state);
+    const nav=useNavigate()
     
   return (
     <div>
@@ -18,6 +19,7 @@ function ShowStudentData() {
   loc.state.map((val)=>{
 return(
   <div className="container my-5">
+    <div className="roundback" onClick={()=>nav('/')}><i class="fa-solid fa-arrow-left"></i></div>
   <h1 className="text-center mb-4">Student Profile Using HTML &amp; CSS</h1>
   <div className="row">
     <div className="col-md-4">
