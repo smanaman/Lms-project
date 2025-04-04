@@ -76,7 +76,7 @@ const resetFilter = () => {
 
             {/* Center Icons Section */}
             <div className="col-md-5 d-flex justify-content-center">
-              <ul className="d-flex list-unstyled m-0">
+              {/* <ul className="d-flex list-unstyled m-0">
                 <li className="user-frame d-flex align-items-center justify-content-center">
                   <svg
                     width="24"
@@ -91,7 +91,7 @@ const resetFilter = () => {
                     />
                   </svg>
                 </li>
-              </ul>
+              </ul> */}
             </div>
 
             {/* Add Student & Logout Section */}
@@ -117,7 +117,7 @@ const resetFilter = () => {
 
       <div class="container mx-auto p-4 ">
         <h1 class="text-xl font-bold mb-4">
-          Unpaid Student Intuition
+           Student Intuition
         </h1>
         <div class="overflow-x-auto">
           <div className="filtring">
@@ -129,9 +129,10 @@ const resetFilter = () => {
         onChange={(e) => setSearchQuery(e.target.value)}
     />
     <button onClick={SarchingData}>Search</button>
-    <button onClick={resetFilter} className="ms-2 bg-secondary p-2 rounded">Reset</button>
 </div>
 <div className="filtring-right">
+<button onClick={resetFilter} className="ms-2 bg-secondary p-2 rounded">Reset</button>
+
     <button className="bg-danger p-2 rounded" onClick={() => handleunpaid('unpaid')}>Unpaid</button>
 </div>
           </div>
