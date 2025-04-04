@@ -38,6 +38,7 @@ function Admin() {
 
   const handleDelete = (id) => {
     dispatch(DeleteData(id));
+    resetFilter()
   };
   const handleunpaid = (del) => {
     const filterdatat = students.filter(val => val.fee === del);
@@ -131,7 +132,7 @@ const resetFilter = () => {
     <button onClick={SarchingData}>Search</button>
 </div>
 <div className="filtring-right">
-<button onClick={resetFilter} className="ms-2 bg-secondary p-2 rounded">Reset</button>
+{/* <button onClick={resetFilter} className="ms-2 bg-secondary p-2 rounded">Reset</button> */}
 
     <button className="bg-danger p-2 rounded" onClick={() => handleunpaid('unpaid')}>Unpaid</button>
 </div>
