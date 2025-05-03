@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { editstudent } from "../feactures/Studentslice";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faUser, faImage, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+// import "./studentEdit.css";
 
 const StudentEdit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const valuedata = location.state || {}; // Get data from navigation
-
-  console.log(valuedata);
+  const valuedata = location.state || {};
 
   const [input, setInput] = useState({
     name: "",
@@ -28,7 +29,6 @@ const StudentEdit = () => {
     }
   }, [valuedata]);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInput((prev) => ({ ...prev, [name]: value }));
@@ -41,158 +41,174 @@ const StudentEdit = () => {
   };
 
   return (
-    <div className="bg-b flex-column">
-                  <div className="roundbackform" onClick={()=>navigate('/admin')}><i class="fa-solid fa-arrow-left"></i></div>
+    <div className="student-edit-container">
+      <button className="back-button" onClick={() => navigate('/admin')}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </button>
 
-      <div className="form_wrapper">
-        <div className="form_container">
-          <div className="title_container">
+      <div className="form-wrapper">
+        <div className="form-card">
+          <div className="form-header">
             <h2>Edit Student Data</h2>
           </div>
-          <div className="row clearfix">
-            <form onSubmit={editdata}>
-              <div className="row clearfix">
-                <div className="col_half">
-                  <div className="input_field">
-                    <span>
-                      <i aria-hidden="true" className="fa fa-user" />
-                    </span>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Enter student name"
-                      value={input.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="col_half">
-                  <div className="input_field">
-                    <span>
-                      <i aria-hidden="true" className="fa fa-user" />
-                    </span>
-                    <input
-                      type="text"
-                      name="lastname"
-                      placeholder="Enter student last name"
-                      value={input.lastname}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
+          
+          <form onSubmit={editdata} className="edit-form">
+            <div className="form-row">
+              <div className="form-group">
+                <div className="input-field">
+                  <FontAwesomeIcon icon={faUser} className="input-icon" />
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="First Name"
+                    value={input.name}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
               </div>
+              
+              <div className="form-group">
+                <div className="input-field">
+                  <FontAwesomeIcon icon={faUser} className="input-icon" />
+                  <input
+                    type="text"
+                    name="lastname"
+                    placeholder="Last Name"
+                    value={input.lastname}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+            </div>
 
-              {/* Image URL Field */}
-              <div className="input_field">
-                <span>
-                  <i aria-hidden="true" className="fa fa-image" />
-                </span>
+            <div className="form-group">
+              <div className="input-field">
+                <FontAwesomeIcon icon={faImage} className="input-icon" />
                 <input
                   type="url"
                   name="img"
-                  placeholder="Enter student photo URL"
+                  placeholder="Profile Image URL"
                   value={input.img}
                   onChange={handleChange}
                   required
                 />
               </div>
+            </div>
 
-              <div className="input_field">
-                <span>
-                  <i aria-hidden="true" className="fa fa-envelope" />
-                </span>
+            <div className="form-group">
+              <div className="input-field">
+                <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
                 <input
                   type="email"
                   name="email"
-                  placeholder="Enter student email"
+                  placeholder="Email Address"
                   value={input.email}
                   onChange={handleChange}
                   required
                 />
               </div>
+            </div>
 
-              <div className="input_field">
-                <span>
-                  <i aria-hidden="true" className="fa fa-lock" />
-                </span>
+            <div className="form-group">
+              <div className="input-field">
+                <FontAwesomeIcon icon={faLock} className="input-icon" />
                 <input
                   type="password"
                   name="password"
-                  placeholder="Enter student password"
+                  placeholder="Password"
                   value={input.password}
                   onChange={handleChange}
                 />
               </div>
+            </div>
 
-              <div className="input_field radio_option">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="male"
-                  id="rd1"
-                  checked={input.gender === "male"}
-                  onChange={handleChange}
-                />
-                <label htmlFor="rd1">Male</label>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="female"
-                  id="rd2"
-                  checked={input.gender === "female"}
-                  onChange={handleChange}
-                />
-                <label htmlFor="rd2">Female</label>
+            <div className="form-group radio-group">
+              <label>Gender:</label>
+              <div className="radio-options">
+                <label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    checked={input.gender === "male"}
+                    onChange={handleChange}
+                  />
+                  Male
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    checked={input.gender === "female"}
+                    onChange={handleChange}
+                  />
+                  Female
+                </label>
               </div>
+            </div>
 
-              <div className="input_field select_option">
-                <select name="course" value={input.course} onChange={handleChange}>
-                  <option value="">Select a Course</option>
-                  <option value="ui/ux design">UI / UX Design</option>
-                  <option value="full stack">Full Stack Development</option>
-                </select>
-                <div className="select_arrow" />
+            <div className="form-group">
+              <select
+                name="course"
+                value={input.course}
+                onChange={handleChange}
+                className="form-select"
+                required
+              >
+                <option value="">Select Course</option>
+                <option value="ui/ux design">UI/UX Design</option>
+                <option value="full stack">Full Stack Development</option>
+              </select>
+            </div>
+
+            <div className="form-group radio-group">
+              <label>Fee Status:</label>
+              <div className="radio-options">
+                <label>
+                  <input
+                    type="radio"
+                    name="fee"
+                    value="paid"
+                    checked={input.fee === "paid"}
+                    onChange={handleChange}
+                  />
+                  Paid
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="fee"
+                    value="unpaid"
+                    checked={input.fee === "unpaid"}
+                    onChange={handleChange}
+                  />
+                  Unpaid
+                </label>
               </div>
-              <div className="input_field radio_option">
-  <input
-    type="radio"
-    name="fee"
-    value="paid"
-    id="fee_paid"
-    checked={input.fee === "paid"}
-    onChange={handleChange}
-  />
-  <label htmlFor="fee_paid">Paid</label>
+            </div>
 
-  <input
-    type="radio"
-    name="fee"
-    value="unpaid"
-    id="fee_unpaid"
-    checked={input.fee === "unpaid"}
-    onChange={handleChange}
-  />
-  <label htmlFor="fee_unpaid">Unpaid</label>
-</div>
+            <div className="form-group checkbox-group">
+              <label>
+                <input type="checkbox"  />
+                I agree to terms and conditions
+              </label>
+            </div>
 
-              <div className="input_field checkbox_option">
-                <input type="checkbox" id="cb1" />
-                <label htmlFor="cb1">I agree with terms and conditions</label>
-              </div>
+            <button type="submit" className="submit-button">
+              Update Student
+            </button>
+          </form>
 
-              <input className="button" type="submit" value="Update" />
-            </form>
+          <div className="form-footer">
+            <p>
+              Developed by <a href="https://avpdeveloper.com" target="_blank" rel="noopener noreferrer">AVP Developer</a>
+            </p>
           </div>
         </div>
       </div>
-      <p className="credit">
-        Developed by{" "}
-        <a href="http://www.designtheway.com" target="_blank">
-        AVP Developer
-        </a>
-      </p>
     </div>
   );
 };
